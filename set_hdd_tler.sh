@@ -21,7 +21,7 @@ writesetting=70
 # 3. A smartctl-based function:
 get_smart_drives()
 {
-  gs_drives=$(/usr/local/sbin/smartctl --scan | grep "dev" | awk '{print $1}' | sed -e 's/\/dev\///' | tr '\n' ' ')
+  gs_drives=$(/usr/local/sbin/smartctl --scan | grep "dev" | grep -v "nvme" | grep -v "ses" | awk '{print $1}' | sed -e 's/\/dev\///' | tr '\n' ' ')
 
   gs_smartdrives=""
 
