@@ -1,5 +1,5 @@
 # Create the jail
-iocage create -n "plex" -r 11.3-RELEASE ip4_addr="vnet0|192.168.1.149/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on" -b devfs_ruleset=10
+iocage create -n "plex" -r 11.3-RELEASE ip4_addr="vnet0|192.168.1.150/24" defaultrouter="192.168.1.1" vnet="on" allow_raw_sockets="1" boot="on" -b devfs_ruleset=10
 
 # Update to the latest repo
 iocage exec plex "mkdir -p /usr/local/etc/pkg/repos"
@@ -18,7 +18,7 @@ iocage exec plex "pw groupmod -n video -m plex"
 iocage exec plex "chown -R plex:plex /config"
 
 # Enable service
-iocage exec plex "sysrc \"plexmediaserver_plexpass_enable=YES\""
+iocage exec plex "sysrc plexmediaserver_plexpass_enable=YES"
 iocage exec plex "sysrc plexmediaserver_plexpass_support_path=\"/config\""
 iocage exec plex "service plexmediaserver_plexpass start"
 
